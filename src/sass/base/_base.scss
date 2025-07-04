@@ -1,0 +1,45 @@
+// TODO update sass creation script.
+// Also add necessary placeholder variables for sass not to break
+@use "../abstracts/variables" as *;
+
+body {
+  box-sizing: border-box;
+  font-size: 1.6rem;
+
+  background-color: $neutral-bg;
+  color: $neutral-text;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  color: inherit;
+  border: none;
+}
+
+input,
+textarea {
+  background-color: $neutral-surface;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+::selection {
+  background-color: $color-secondary-light;
+  color: $neutral-text;
+}

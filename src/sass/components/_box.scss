@@ -1,0 +1,21 @@
+@use "../abstracts/variables" as *;
+
+.box {
+  display: flex;
+  flex-direction: column;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: $color-primary-light;
+
+  border-radius: 2rem;
+
+  & > * {
+    padding: 2rem;
+  }
+
+  // Select every child but last one
+  & > :not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}

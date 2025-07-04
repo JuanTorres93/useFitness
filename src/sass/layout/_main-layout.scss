@@ -1,5 +1,48 @@
 .main-layout {
+  display: grid;
+  $side-space: 2rem;
+  grid-template-columns:
+    [start-left-space]
+    $side-space
+    [start-content start-left-box start-navbar end-left-space]
+    // TODO give a maximum value
+    1fr
+    [start-center-space end-left-box]
+    3rem
+    [start-right-box end-center-space]
+    // TODO give a maximum value
+    1fr
+    [start-right-space end-content end-right-box end-navbar]
+    $side-space
+    [end-right-space];
+  grid-template-rows:
+    [start-top-space]
+    3rem
+    [start-navbar end-top-space]
+    6rem
+    [start-content-spacing end-navbar]
+    3rem
+    [start-content end-content-spacing]
+    85vh
+    [start-bottom-box end-content end-bottom-box]
+    1fr
+    [end-bottom-space];
+
   .navbar {
-    height: 6rem;
+    grid-row: start-navbar / end-navbar;
+    grid-column: start-navbar / end-navbar;
+  }
+
+  .box {
+    grid-row: start-content / end-content;
+    justify-self: stretch;
+
+    &--left {
+      grid-column: start-left-box / end-left-box;
+    }
+
+    &--right {
+      grid-column: start-right-box / end-right-box;
+    }
   }
 }
