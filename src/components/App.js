@@ -1,8 +1,9 @@
+import NavBar from "./NavBar";
+
 function App() {
   return (
-    <div>
-      TODO: create app
-      {/* NavBar */}
+    <div className="main-layout">
+      <NavBar />
       {/* Main */}
       {/* == Box List */}
       {/* ==== Exercise Item */}

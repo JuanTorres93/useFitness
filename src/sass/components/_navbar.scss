@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as *;
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 1rem;
+  border-radius: 1.5rem;
+  font-size: 2rem;
+  background-color: $color-primary;
+
+  img {
+    max-height: 90%;
+    justify-self: flex-start;
+  }
+
+  input {
+    border-radius: 0.7rem;
+    padding: 0.5rem 1rem;
+    flex-grow: 1;
+    margin: auto;
+    max-width: 40rem;
+  }
+}
