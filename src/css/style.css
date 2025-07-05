@@ -125,6 +125,23 @@ button:focus {
   background-color: #a0b1d6;
 }
 
+.exercise {
+  display: flex;
+  justify-content: space-between;
+  background-color: #c19875;
+  border-radius: 0.4rem;
+}
+.exercise:hover {
+  cursor: pointer;
+  background-color: #d4c7bc;
+}
+.exercise__name {
+  font-weight: bold;
+}
+.exercise .star {
+  flex-shrink: 0;
+}
+
 .navbar {
   display: flex;
   align-items: center;
@@ -146,16 +163,22 @@ button:focus {
   max-width: 40rem;
 }
 
-.exercise {
-  background-color: #c19875;
-  border-radius: 0.4rem;
+.star {
+  width: 2.2rem;
+  height: 2.2rem;
 }
-.exercise:hover {
-  cursor: pointer;
-  background-color: #e8e2db;
+.star svg {
+  stroke: #fffaf5;
+  margin: 0;
 }
-.exercise__name {
-  font-weight: bold;
+.star--full svg {
+  fill: #fffaf5;
+}
+
+.no-content-text {
+  font-size: 2rem;
+  margin: 2rem auto;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

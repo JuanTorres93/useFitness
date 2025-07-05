@@ -15,8 +15,10 @@
 // Components
 @use "components/box";
 @use "components/buttons";
-@use "components/navbar";
 @use "components/exercise";
+@use "components/navbar";
+@use "components/star";
+@use "components/misc";
 
 // Pages
 @use "pages/home";

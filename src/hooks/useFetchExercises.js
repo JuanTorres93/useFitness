@@ -5,6 +5,7 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
   const [exercises, setExercises] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(null);
+  // TODO: Error state to use message to user
 
   const limit = 15; // Default limit for pagination
 
@@ -15,7 +16,6 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
       setIsLoading(true);
       try {
         const res = await fetch(
-          // `${apiURL}/exercises/autocomplete?search=${searchTerm}`,
           `${apiURL}/exercises?search=${searchTerm}&limit=${limit}&offset=${limit * offset}`,
           {
             signal: controller.signal,
@@ -28,10 +28,14 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
 
         const data = await res.json();
 
-        // TODO DELETE THESE DEBUG LOGS
-        console.log("data.data");
-        console.log(data.data);
-        const newExercises = data.data.exercises;
+        const favExercisesIds = JSON.parse(
+          localStorage.getItem("favExercises") || "[]"
+        ).map((exercise) => exercise.exerciseId);
+
+        const newExercises = data.data.exercises.map((exercise) => ({
+          ...exercise,
+          isFavorite: favExercisesIds.includes(exercise.exerciseId),
+        }));
 
         setTotalPages(data.data.totalPages);
         setExercises((curExercises) =>
@@ -50,7 +54,7 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
       }
     };
 
-    fetchExercises();
+    searchTerm.trim() !== "" ? fetchExercises() : setExercises([]);
 
     return () => {
       controller.abort();
@@ -61,5 +65,6 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
     exercises,
     isLoading,
     totalPages,
+    setExercises,
   };
 };
