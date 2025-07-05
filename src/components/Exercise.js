@@ -1,6 +1,6 @@
 import Star from "./Star";
 
-function Exercise({ exercise, onHandleToggleFavorite }) {
+function Exercise({ exercise, onToggleFavorite, onSelectExercise }) {
   // Make first letter uppercase and replace dashes with spaces
   const name = exercise?.name
     .replace(/-/g, " ")
@@ -8,11 +8,11 @@ function Exercise({ exercise, onHandleToggleFavorite }) {
     .replace(/\b\w/, (char) => char.toUpperCase());
 
   return (
-    <div className="exercise">
+    <div onClick={onSelectExercise} className="exercise">
       <span className="exercise__name">{name}</span>
       <Star
         isFull={exercise?.isFavorite || false}
-        onHandleToggleFavorite={onHandleToggleFavorite}
+        onToggleFavorite={onToggleFavorite}
       />
     </div>
   );

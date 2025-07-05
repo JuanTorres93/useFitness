@@ -6,6 +6,10 @@
 
   $star-color: $neutral-white-warm;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   svg {
     stroke: $star-color;
     margin: 0;

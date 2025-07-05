@@ -2,6 +2,7 @@
   display: grid;
   $side-space: 2rem;
   $box-margin-space: minmax(4rem, 10rem);
+  $box-width: 1fr;
 
   grid-template-columns:
     [start-left-space]
@@ -10,12 +11,12 @@
     $box-margin-space
     [start-content start-left-box]
     // TODO give a maximum value
-    1fr
+    $box-width
     [start-center-space end-left-box]
     3rem
     [start-right-box end-center-space]
     // TODO give a maximum value
-    1fr
+    $box-width
     [start-right-space end-content end-right-box]
     $box-margin-space
     [end-right-space end-navbar]
@@ -45,7 +46,7 @@
 
     &--left {
       grid-column: start-left-box / end-left-box;
-      justify-self: stretch end;
+      justify-self: stretch;
     }
 
     &--right {

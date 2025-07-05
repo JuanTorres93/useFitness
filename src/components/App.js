@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import Exercise from "./Exercise";
 import Stats from "./Stats";
 import FavSummary from "./FavSummary";
+import ExerciseDetails from "./ExerciseDetails";
 
 import { useFetchExercises } from "../hooks/useFetchExercises";
 
@@ -12,6 +13,7 @@ function App() {
   // State definition
   const [searchTerm, setSearchTerm] = useState("");
   const [pageRequested, setPageRequested] = useState(0);
+  const [selectedExercise, setSelectedExercise] = useState(null);
   const { exercises, isLoading, totalPages, setExercises } = useFetchExercises(
     searchTerm,
     pageRequested
@@ -30,8 +32,11 @@ function App() {
       <Exercise
         key={exercise.exerciseId}
         exercise={exercise}
-        onHandleToggleFavorite={() => {
+        onToggleFavorite={() => {
           handleToggleFavorite(exercise);
+        }}
+        onSelectExercise={() => {
+          handleSelectExercise(exercise);
         }}
       />
     ));
@@ -42,23 +47,39 @@ function App() {
       <Exercise
         key={exercise.exerciseId}
         exercise={exercise}
-        onHandleToggleFavorite={() => {
+        onToggleFavorite={() => {
           handleToggleFavorite(exercise);
+        }}
+        onSelectExercise={() => {
+          handleSelectExercise(exercise);
         }}
       />
     ));
 
   // Event handlers
-  const handleShowMore = () => {
+  function handleShowMore() {
     setPageRequested((prevPage) => prevPage + 1);
-  };
+  }
 
-  const handleUpdateSearchTerm = (newSearchTerm) => {
+  function handleUpdateSearchTerm(newSearchTerm) {
     setSearchTerm(newSearchTerm);
     setPageRequested(0); // Reset page when search term changes
-  };
+  }
 
-  // NOTE: Defined as "function" to be able to use it above
+  function handleSelectExercise(exercise) {
+    // If the exercise is already selected, deselect it
+    if (selectedExercise?.exerciseId === exercise.exerciseId) {
+      setSelectedExercise(null);
+    } else {
+      // Otherwise, select the new exercise
+      setSelectedExercise(exercise);
+    }
+  }
+
+  function handleDeselectExercise() {
+    setSelectedExercise(null);
+  }
+
   function handleToggleFavorite(exercise) {
     // Compute final exercise yo reuse in both lists
     const updatedExercise = {
@@ -128,20 +149,25 @@ function App() {
           </>
         )}
       </Box>
-      {/* ==== Exercise Item */}
-      {/* == Box Content */}
-      {/* ==== Stats */}
-      {/* ==== (OR) Exercise Details */}
-      {/* ==== (OR) Fav Exercises List */}
-      {/* ====== Exercise Item */}
+
       <Box className="box--right">
-        <FavSummary favExercises={favExercises} />
-        {favExercises.length > 0 ? (
-          favExercisesInstances
+        {selectedExercise ? (
+          <ExerciseDetails
+            exercise={selectedExercise}
+            onToggleFavorite={() => handleToggleFavorite(selectedExercise)}
+            onCloseDetails={handleDeselectExercise}
+          />
         ) : (
-          <span className="no-content-text">
-            You don't have any favorite exercises yet
-          </span>
+          <>
+            <FavSummary favExercises={favExercises} />
+            {favExercises.length > 0 ? (
+              favExercisesInstances
+            ) : (
+              <span className="no-content-text">
+                You don't have any favorite exercises yet
+              </span>
+            )}
+          </>
         )}
       </Box>
     </div>

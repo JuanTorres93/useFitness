@@ -89,7 +89,7 @@ button:focus {
 }
 .main-layout .box--left {
   grid-column: start-left-box/end-left-box;
-  justify-self: stretch end;
+  justify-self: stretch;
 }
 .main-layout .box--right {
   grid-column: start-right-box/end-right-box;
@@ -170,6 +170,9 @@ button:focus {
   width: 2.2rem;
   height: 2.2rem;
 }
+.star:hover {
+  cursor: pointer;
+}
 .star svg {
   stroke: #fffaf5;
   margin: 0;
@@ -206,6 +209,69 @@ button:focus {
 }
 .fav-summary__box .star {
   margin-left: 0.5rem;
+}
+
+.exercise-details {
+  padding: 0;
+  position: relative;
+}
+.exercise-details__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  background-color: #758ac1;
+  padding: 2rem;
+  padding-left: 5rem;
+}
+.exercise-details > :not(.exercise-details__header) {
+  padding: 2rem;
+}
+.exercise-details h3 {
+  position: relative;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  background-color: #e8e2db;
+}
+.exercise-details__btn-back {
+  position: absolute;
+  border-radius: 100%;
+  top: 0.7rem;
+  left: 0.5rem;
+  background-color: rgba(212, 199, 188, 0.8);
+}
+.exercise-details__btn-back:hover {
+  background-color: rgba(212, 199, 188, 0.6);
+}
+.exercise-details__btn-back::after {
+  content: "<-";
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.instructions-list {
+  list-style: none;
+}
+.instructions-list li:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+
+.muscles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+}
+.muscles-list .muscle {
+  background-color: #a0b1d6;
+  color: #4b3d33;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 /*# sourceMappingURL=style.css.map */

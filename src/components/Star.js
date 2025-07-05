@@ -1,12 +1,20 @@
 import { useState } from "react";
 
-function Star({ isFull, onHandleToggleFavorite }) {
+function Star({ isFull, onToggleFavorite }) {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleClick = (e) => {
+    // Prevent click from bubbling up to parent elements.
+    // This is in order not to select the exercise when clicking on the star.
+    e.stopPropagation();
+
+    onToggleFavorite && onToggleFavorite();
+  };
 
   return (
     <div
       className={`star ${isFull || isHovered ? "star--full" : ""}`}
-      onClick={onHandleToggleFavorite}
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

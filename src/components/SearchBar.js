@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 
+import { useKeydown } from "../hooks/useKeydown";
+
 function SearchBar({ searchTerm, onUpdateSearchTerm }) {
   const inputRef = useRef(null);
 
@@ -8,28 +10,18 @@ function SearchBar({ searchTerm, onUpdateSearchTerm }) {
     inputRef.current.focus();
   }, []);
 
-  useEffect(() => {
-    // Focus when pressing Enter key
-    const callback = (event) => {
-      if (event.key.toLowerCase() === "enter") {
-        // Check if the input is focused
-        if (document.activeElement !== inputRef.current) {
-          // If not focused, focus the input
-          inputRef.current.focus();
+  useKeydown("Enter", () => {
+    // Focus on pressing Enter key
 
-          // Clear the current search term
-          onUpdateSearchTerm("");
-        }
-      }
-    };
+    // Check if the input is focused
+    if (document.activeElement !== inputRef.current) {
+      // If not focused, focus the input
+      inputRef.current.focus();
 
-    // Press entrer to focus search input
-    document.addEventListener("keydown", callback);
-
-    return () => {
-      document.removeEventListener("keydown", callback);
-    };
-  }, [onUpdateSearchTerm]);
+      // Clear the current search term
+      onUpdateSearchTerm("");
+    }
+  });
 
   return (
     <input
