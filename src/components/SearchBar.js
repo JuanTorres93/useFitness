@@ -1,14 +1,10 @@
-import { useState } from "react";
-
-function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
-
+function SearchBar({ searchTerm, onUpdateSearchTerm }) {
   return (
     <input
       type="text"
       placeholder="Search exercises..."
       value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
+      onChange={(e) => onUpdateSearchTerm(e.target.value)}
     />
   );
 }

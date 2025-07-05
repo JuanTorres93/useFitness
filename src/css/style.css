@@ -1,3 +1,18 @@
+.spinner {
+  width: 80px;
+  height: 80px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #4b3d33;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 /* Basix reset */
 *,
 *::after,
@@ -62,7 +77,7 @@ button:focus {
 
 .main-layout {
   display: grid;
-  grid-template-columns: [start-left-space] 2rem [start-content start-left-box start-navbar end-left-space] 1fr [start-center-space end-left-box] 3rem [start-right-box end-center-space] 1fr [start-right-space end-content end-right-box end-navbar] 2rem [end-right-space];
+  grid-template-columns: [start-left-space] 2rem [end-left-space start-left-box-space start-navbar] minmax(4rem, 10rem) [start-content start-left-box] 1fr [start-center-space end-left-box] 3rem [start-right-box end-center-space] 1fr [start-right-space end-content end-right-box] minmax(4rem, 10rem) [end-right-space end-navbar] 2rem [end-right-space];
   grid-template-rows: [start-top-space] 3rem [start-navbar end-top-space] 6rem [start-content-spacing end-navbar] 3rem [start-content end-content-spacing] 85vh [start-bottom-box end-content end-bottom-box] 1fr [end-bottom-space];
 }
 .main-layout .navbar {
@@ -71,13 +86,18 @@ button:focus {
 }
 .main-layout .box {
   grid-row: start-content/end-content;
-  justify-self: stretch;
 }
 .main-layout .box--left {
   grid-column: start-left-box/end-left-box;
+  justify-self: stretch end;
 }
 .main-layout .box--right {
   grid-column: start-right-box/end-right-box;
+}
+.main-layout .box .btn {
+  align-self: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .box {
@@ -87,12 +107,22 @@ button:focus {
   overflow-y: scroll;
   background-color: #dab9a1;
   border-radius: 2rem;
+  border: 3px solid #d4c7bc;
 }
 .box > * {
   padding: 2rem;
 }
 .box > :not(:last-child) {
   margin-bottom: 1rem;
+}
+
+.btn {
+  background-color: #758ac1;
+  color: #fffaf5;
+  border-radius: 1rem;
+}
+.btn:hover {
+  background-color: #a0b1d6;
 }
 
 .navbar {
@@ -114,6 +144,18 @@ button:focus {
   flex-grow: 1;
   margin: auto;
   max-width: 40rem;
+}
+
+.exercise {
+  background-color: #c19875;
+  border-radius: 0.4rem;
+}
+.exercise:hover {
+  cursor: pointer;
+  background-color: #e8e2db;
+}
+.exercise__name {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -12,6 +12,7 @@ TODO: write
 
 - This project is not meant to be 100% responsive.
 - This project is not meant to solve a real life problem.
+- Image are not shown due to finantial reasons. Free APIs are limited in this regard.
 
 # Project screenshot
 

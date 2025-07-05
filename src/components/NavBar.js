@@ -1,10 +1,8 @@
-import SearchBar from "./SearchBar";
-
-function NavBar() {
+function NavBar({ children }) {
   return (
     <nav className="navbar">
       <img src="logo.png" alt="useFitness logo" />
-      <SearchBar />
+      {children}
     </nav>
   );
 }

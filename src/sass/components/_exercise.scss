@@ -1,0 +1,15 @@
+@use "../abstracts/variables" as *;
+
+.exercise {
+  background-color: $color-primary;
+  border-radius: 0.4rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $neutral-surface;
+  }
+
+  &__name {
+    font-weight: bold;
+  }
+}

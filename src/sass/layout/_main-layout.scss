@@ -1,10 +1,14 @@
 .main-layout {
   display: grid;
   $side-space: 2rem;
+  $box-margin-space: minmax(4rem, 10rem);
+
   grid-template-columns:
     [start-left-space]
     $side-space
-    [start-content start-left-box start-navbar end-left-space]
+    [end-left-space start-left-box-space start-navbar]
+    $box-margin-space
+    [start-content start-left-box]
     // TODO give a maximum value
     1fr
     [start-center-space end-left-box]
@@ -12,9 +16,12 @@
     [start-right-box end-center-space]
     // TODO give a maximum value
     1fr
-    [start-right-space end-content end-right-box end-navbar]
+    [start-right-space end-content end-right-box]
+    $box-margin-space
+    [end-right-space end-navbar]
     $side-space
     [end-right-space];
+
   grid-template-rows:
     [start-top-space]
     3rem
@@ -35,14 +42,20 @@
 
   .box {
     grid-row: start-content / end-content;
-    justify-self: stretch;
 
     &--left {
       grid-column: start-left-box / end-left-box;
+      justify-self: stretch end;
     }
 
     &--right {
       grid-column: start-right-box / end-right-box;
+    }
+
+    .btn {
+      align-self: center;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
     }
   }
 }

@@ -2,6 +2,7 @@
 @use "abstracts/variables";
 @use "abstracts/mixins";
 @use "abstracts/functions";
+@use "abstracts/animations";
 
 // Base
 @use "base/reset";
@@ -13,7 +14,9 @@
 
 // Components
 @use "components/box";
+@use "components/buttons";
 @use "components/navbar";
+@use "components/exercise";
 
 // Pages
 @use "pages/home";
