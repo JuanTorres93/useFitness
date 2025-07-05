@@ -1,0 +1,19 @@
+@use "../abstracts/variables" as *;
+
+.fav-summary {
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-primary-dark;
+  color: $neutral-white-warm;
+  font-size: 1.8rem;
+
+  &__box {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+
+    .star {
+      margin-left: 0.5rem;
+    }
+  }
+}

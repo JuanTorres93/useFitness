@@ -1,0 +1,10 @@
+@use "../abstracts/variables" as *;
+
+.stats {
+  font-style: italic;
+
+  &__number {
+    font-weight: bold;
+    font-style: normal;
+  }
+}

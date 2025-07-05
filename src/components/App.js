@@ -3,6 +3,8 @@ import Box from "./Box";
 import NavBar from "./NavBar";
 import SearchBar from "./SearchBar";
 import Exercise from "./Exercise";
+import Stats from "./Stats";
+import FavSummary from "./FavSummary";
 
 import { useFetchExercises } from "../hooks/useFetchExercises";
 
@@ -105,6 +107,7 @@ function App() {
           searchTerm={searchTerm}
           onUpdateSearchTerm={handleUpdateSearchTerm}
         />
+        {exercises.length > 0 && <Stats exercises={exercises} />}
       </NavBar>
 
       <Box className="box--left">
@@ -132,6 +135,7 @@ function App() {
       {/* ==== (OR) Fav Exercises List */}
       {/* ====== Exercise Item */}
       <Box className="box--right">
+        <FavSummary favExercises={favExercises} />
         {favExercises.length > 0 ? (
           favExercisesInstances
         ) : (
