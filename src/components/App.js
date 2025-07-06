@@ -6,6 +6,7 @@ import Exercise from "./Exercise";
 import Stats from "./Stats";
 import FavSummary from "./FavSummary";
 import ExerciseDetails from "./ExerciseDetails";
+import Error from "./Error";
 
 import { useFetchExercises } from "../hooks/useFetchExercises";
 
@@ -14,10 +15,8 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [pageRequested, setPageRequested] = useState(0);
   const [selectedExercise, setSelectedExercise] = useState(null);
-  const { exercises, isLoading, totalPages, setExercises } = useFetchExercises(
-    searchTerm,
-    pageRequested
-  );
+  const { exercises, isLoading, error, totalPages, setExercises } =
+    useFetchExercises(searchTerm, pageRequested);
   const [favExercises, setFavExercises] = useState(() => {
     const storedFavExercises = localStorage.getItem("favExercises");
     return storedFavExercises ? JSON.parse(storedFavExercises) : [];
@@ -26,6 +25,7 @@ function App() {
   const hasRequestedLastPage = totalPages - 1 <= pageRequested;
 
   // Exercise instances computed here to get cleaner JSX below
+  // TODO create an ExerciseList component to reuse this logic
   const exercisesInstances =
     exercises.length > 0 &&
     exercises.map((exercise) => (
@@ -132,9 +132,9 @@ function App() {
       </NavBar>
 
       <Box className="box--left">
-        {isLoading ? (
-          <span className="spinner"></span>
-        ) : (
+        {error && <Error error={error} />}
+        {isLoading && !error && <span className="spinner"></span>}
+        {!isLoading && !error && (
           <>
             {exercises.length > 0 ? (
               exercisesInstances

@@ -77,7 +77,7 @@ button:focus {
 
 .main-layout {
   display: grid;
-  grid-template-columns: [start-left-space] 2rem [end-left-space start-left-box-space start-navbar] minmax(4rem, 10rem) [start-content start-left-box] 1fr [start-center-space end-left-box] 3rem [start-right-box end-center-space] 1fr [start-right-space end-content end-right-box] minmax(4rem, 10rem) [end-right-space end-navbar] 2rem [end-right-space];
+  grid-template-columns: [start-left-space] 2rem [end-left-space start-left-box-space start-navbar] minmax(4rem, 1fr) [start-content start-left-box] minmax(20rem, 65rem) [start-center-space end-left-box] 3rem [start-right-box end-center-space] minmax(20rem, 65rem) [start-right-space end-content end-right-box] minmax(4rem, 1fr) [end-right-space end-navbar] 2rem [end-right-space];
   grid-template-rows: [start-top-space] 3rem [start-navbar end-top-space] 6rem [start-content-spacing end-navbar] 3rem [start-content end-content-spacing] 85vh [start-bottom-box end-content end-bottom-box] 1fr [end-bottom-space];
 }
 .main-layout .navbar {
@@ -89,7 +89,6 @@ button:focus {
 }
 .main-layout .box--left {
   grid-column: start-left-box/end-left-box;
-  justify-self: stretch;
 }
 .main-layout .box--right {
   grid-column: start-right-box/end-right-box;
@@ -272,6 +271,25 @@ button:focus {
   font-size: 1.4rem;
   font-weight: 500;
   text-transform: capitalize;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #c85a5a;
+  color: #fffaf5;
+}
+.error__error {
+  margin-left: 1rem;
+  font-weight: 600;
+}
+.error svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+.error svg * {
+  stroke: #fffaf5;
 }
 
 /*# sourceMappingURL=style.css.map */

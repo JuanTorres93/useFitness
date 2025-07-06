@@ -5,7 +5,7 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
   const [exercises, setExercises] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPages, setTotalPages] = useState(null);
-  // TODO: Error state to use message to user
+  const [error, setError] = useState(null);
 
   const limit = 15; // Default limit for pagination
 
@@ -15,6 +15,7 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
     const fetchExercises = async () => {
       setIsLoading(true);
       try {
+        setError(null);
         const res = await fetch(
           `${apiURL}/exercises?search=${searchTerm}&limit=${limit}&offset=${limit * offset}`,
           {
@@ -42,10 +43,12 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
           offset === 0 ? newExercises : [...curExercises, ...newExercises]
         );
         setIsLoading(false);
+        setError(null);
       } catch (error) {
         if (error.name !== "AbortError") {
           console.log("error fetching exercises");
           console.log(error);
+          setError(error);
           setIsLoading(false);
         }
       } finally {
@@ -65,6 +68,7 @@ export const useFetchExercises = (searchTerm, offset = 0) => {
     exercises,
     isLoading,
     totalPages,
+    error,
     setExercises,
   };
 };

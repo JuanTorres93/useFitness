@@ -1,0 +1,22 @@
+@use "../abstracts/variables" as *;
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $error;
+  color: $neutral-white-warm;
+
+  &__error {
+    margin-left: 1rem;
+    font-weight: 600;
+  }
+
+  svg {
+    width: 2.2rem;
+    height: 2.2rem;
+    * {
+      stroke: $neutral-white-warm;
+    }
+  }
+}
