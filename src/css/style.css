@@ -208,6 +208,7 @@ button:focus {
 }
 .fav-summary__box .star {
   margin-left: 0.5rem;
+  cursor: default;
 }
 
 .exercise-details {

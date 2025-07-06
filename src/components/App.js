@@ -3,6 +3,7 @@ import Box from "./Box";
 import NavBar from "./NavBar";
 import SearchBar from "./SearchBar";
 import Exercise from "./Exercise";
+import ExerciseList from "./ExerciseList";
 import Stats from "./Stats";
 import FavSummary from "./FavSummary";
 import ExerciseDetails from "./ExerciseDetails";
@@ -23,38 +24,6 @@ function App() {
   });
 
   const hasRequestedLastPage = totalPages - 1 <= pageRequested;
-
-  // Exercise instances computed here to get cleaner JSX below
-  // TODO create an ExerciseList component to reuse this logic
-  const exercisesInstances =
-    exercises.length > 0 &&
-    exercises.map((exercise) => (
-      <Exercise
-        key={exercise.exerciseId}
-        exercise={exercise}
-        onToggleFavorite={() => {
-          handleToggleFavorite(exercise);
-        }}
-        onSelectExercise={() => {
-          handleSelectExercise(exercise);
-        }}
-      />
-    ));
-
-  const favExercisesInstances =
-    favExercises.length > 0 &&
-    favExercises.map((exercise) => (
-      <Exercise
-        key={exercise.exerciseId}
-        exercise={exercise}
-        onToggleFavorite={() => {
-          handleToggleFavorite(exercise);
-        }}
-        onSelectExercise={() => {
-          handleSelectExercise(exercise);
-        }}
-      />
-    ));
 
   // Event handlers
   function handleShowMore() {
@@ -137,7 +106,11 @@ function App() {
         {!isLoading && !error && (
           <>
             {exercises.length > 0 ? (
-              exercisesInstances
+              <ExerciseList
+                exercises={exercises}
+                handleToggleFavorite={handleToggleFavorite}
+                handleSelectExercise={handleSelectExercise}
+              />
             ) : (
               <span className="no-content-text">No exercises found</span>
             )}
@@ -161,7 +134,11 @@ function App() {
           <>
             <FavSummary favExercises={favExercises} />
             {favExercises.length > 0 ? (
-              favExercisesInstances
+              <ExerciseList
+                exercises={favExercises}
+                handleToggleFavorite={handleToggleFavorite}
+                handleSelectExercise={handleSelectExercise}
+              />
             ) : (
               <span className="no-content-text">
                 You don't have any favorite exercises yet
