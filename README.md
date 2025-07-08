@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/Status-Finished-greenlight)
+
 # 🌕 Project's purpose
 
 This is a dummy project whose purpose is to fetch data from an external API via useEffect and custom hooks. In addition it uses the useRef hook and Component composition to avoid prop Drilling.
